@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
 
-    public MutableLiveData<Boolean> mBackgroundIsVisible = new MutableLiveData<>();
+    public MutableLiveData<String> mBgColor = new MutableLiveData<>();
     public MutableLiveData<String> mTextView = new MutableLiveData<>();
 
 

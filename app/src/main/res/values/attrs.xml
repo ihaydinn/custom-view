@@ -2,7 +2,6 @@
 <resources>
 
     <declare-styleable name="TextViewCV" >
-    <attr name="cv_sb_text" format="integer"/>
     </declare-styleable>
 
 </resources>

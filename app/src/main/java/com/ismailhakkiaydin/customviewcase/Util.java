@@ -1,11 +1,64 @@
 package com.ismailhakkiaydin.customviewcase;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
+import androidx.databinding.InverseBindingListener;
 
 public class Util {
-    @BindingAdapter("app:customText")
-    public void customText(TextViewCV textViewCV, String text){
-        textViewCV.setText(text);
+
+    @BindingAdapter("backgroundColor")
+    public static void setBackgroundColor(TextViewCV textViewCV, String color) {
+        if (!textViewCV.getTextBgColor().equals(color))
+            textViewCV.setTextBgColor(color);
     }
 
+
+    @InverseBindingAdapter(attribute = "backgroundColor")
+    public static String getBackgroundColor(TextViewCV textViewCV) {
+        return textViewCV.getTextBgColor();
+    }
+
+
+    @BindingAdapter("text")
+    public static void setText(TextViewCV textViewCV, String text) {
+        if (!textViewCV.getText().equals(text))
+            textViewCV.setText(text);
+    }
+
+    @InverseBindingAdapter(attribute = "text")
+    public static String getText(TextViewCV textViewCV) {
+        return textViewCV.getText();
+    }
+
+    @BindingAdapter(value = "backgroundColorAttrChanged")
+    public static void setBackgroundListener(TextViewCV textViewCV, final InverseBindingListener listener){
+        if (listener != null){
+            textViewCV.setColorChangeListener(() -> listener.onChange());
+        }
+    }
+
+    @BindingAdapter(value = "textAttrChanged")
+    public static void setListener(TextViewCV textViewCV, final InverseBindingListener listener) {
+        if (listener != null) {
+            textViewCV.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    listener.onChange();
+                }
+            });
+        }
+    }
 }
