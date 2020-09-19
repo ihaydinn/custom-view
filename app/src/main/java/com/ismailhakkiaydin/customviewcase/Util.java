@@ -34,7 +34,16 @@ public class Util {
         return textViewCV.getTextColor();
     }
 
+    @BindingAdapter("backgroundColor")
+    public static void setBackgroundColor(TextViewCV textViewCV, String color) {
+        if (!textViewCV.getTextBgColor().equals(color))
+            textViewCV.setTextBgColor(color);
+    }
 
+    @InverseBindingAdapter(attribute = "backgroundColor")
+    public static String getBackgroundColor(TextViewCV textViewCV) {
+        return textViewCV.getTextBgColor();
+    }
 
     @BindingAdapter("text")
     public static void setText(TextViewCV textViewCV, String text) {
@@ -47,7 +56,12 @@ public class Util {
         return textViewCV.getText();
     }
 
-
+    @BindingAdapter(value = "backgroundColorAttrChanged")
+    public static void setBackgroundListener(TextViewCV textViewCV, final InverseBindingListener listener) {
+        if (listener != null) {
+            textViewCV.setColorChangeListener(() -> listener.onChange());
+        }
+    }
 
     @BindingAdapter(value = "textAttrChanged")
     public static void setListener(TextViewCV textViewCV, final InverseBindingListener listener) {

@@ -21,7 +21,7 @@ public class TextViewCV extends FrameLayout {
 
     private LinearLayout mLinearLayout;
     private TextView mTextView;
-
+    private ColorChangeListener mColorChangeListener;
     private TextColorChangeListener mTextColorChangeListener;
     private TextSizeChangeListener mTextSizeChangeListener;
 
@@ -78,6 +78,9 @@ public class TextViewCV extends FrameLayout {
             mTextView.setBackgroundColor(Color.parseColor(color));
         }
 
+        if (mColorChangeListener != null) {
+            mColorChangeListener.onColorChange();
+        }
     }
 
     public String getTextColor() {
@@ -110,6 +113,9 @@ public class TextViewCV extends FrameLayout {
     }
 
 
+    public void setColorChangeListener(ColorChangeListener listener) {
+        mColorChangeListener = listener;
+    }
 
     public void setTextSizeChangeListener(TextSizeChangeListener listener) {
         mTextSizeChangeListener = listener;
@@ -127,5 +133,8 @@ public class TextViewCV extends FrameLayout {
         void onTextColorChange();
     }
 
+    interface ColorChangeListener {
+        void onColorChange();
+    }
 
 }

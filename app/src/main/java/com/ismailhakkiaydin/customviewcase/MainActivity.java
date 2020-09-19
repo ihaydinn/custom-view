@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
             Random rnd = new Random();
             int number = rnd.nextInt(4);
             String[] bgColorArray = {"#FF1212", "#1251FF", "#125212", "#651200"};
+            String[] textColorArray = {"#FF4DD0E1", "#FFFFF176", "#FF81C784", "#003218"};
 
             textViewCV.setTextBgColor(bgColorArray[number]);
             textViewCV.setText("Beni Tıkladın..");
-
+            textViewCV.setTextColor(textColorArray[number]);
             textViewCV.setTextSize(32);
         });
     }
