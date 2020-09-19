@@ -21,7 +21,9 @@ public class TextViewCV extends FrameLayout {
 
     private LinearLayout mLinearLayout;
     private TextView mTextView;
-    private ColorChangeListener mColorChangeListener;
+
+    private TextColorChangeListener mTextColorChangeListener;
+    private TextSizeChangeListener mTextSizeChangeListener;
 
 
     public TextViewCV(@NonNull Context context) {
@@ -58,7 +60,6 @@ public class TextViewCV extends FrameLayout {
         mTextView.addTextChangedListener(textWatcher);
     }
 
-
     public String getTextBgColor() {
         ColorDrawable cd = (ColorDrawable) mTextView.getBackground();
         if (cd == null) {
@@ -77,18 +78,54 @@ public class TextViewCV extends FrameLayout {
             mTextView.setBackgroundColor(Color.parseColor(color));
         }
 
-        if (mColorChangeListener != null) {
-            mColorChangeListener.onColorChange();
+    }
+
+    public String getTextColor() {
+        int textColor = mTextView.getCurrentTextColor();
+        return Integer.toHexString(textColor);
+    }
+
+    public void setTextColor(String color){
+        if (color !=null){
+            if (!color.contains("#")){
+                color = "#"+ color;
+            }
+            mTextView.setTextColor(Color.parseColor(color));
+        }
+        if (mTextColorChangeListener != null){
+            mTextColorChangeListener.onTextColorChange();
         }
     }
 
+    public void setTextSize(int size){
+            mTextView.setTextSize(size);
 
-    public void setColorChangeListener(ColorChangeListener listener) {
-        mColorChangeListener = listener;
+        if (mTextSizeChangeListener != null){
+            mTextSizeChangeListener.onSizeChange();
+        }
     }
 
-    interface ColorChangeListener {
-        void onColorChange();
+    public int getTextSize(){
+        return (int) mTextView.getTextSize();
     }
+
+
+
+    public void setTextSizeChangeListener(TextSizeChangeListener listener) {
+        mTextSizeChangeListener = listener;
+    }
+
+    public void setTextColorChangeListener(TextColorChangeListener listener) {
+        mTextColorChangeListener = listener;
+    }
+
+    interface TextSizeChangeListener {
+        void onSizeChange();
+    }
+
+    interface TextColorChangeListener {
+        void onTextColorChange();
+    }
+
 
 }

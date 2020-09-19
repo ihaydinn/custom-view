@@ -21,9 +21,12 @@
             android:layout_marginEnd="4dp"
             app:backgroundColor="@={viewModel.mBgColor}"
             app:text="@={viewModel.mTextView}"
+            app:textColor="@={viewModel.mTextColor}"
+            app:textSize="@={viewModel.mTextSize}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <Button
             android:id="@+id/button"

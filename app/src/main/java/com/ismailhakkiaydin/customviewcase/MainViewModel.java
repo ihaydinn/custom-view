@@ -8,6 +8,8 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<String> mBgColor = new MutableLiveData<>();
     public MutableLiveData<String> mTextView = new MutableLiveData<>();
+    public MutableLiveData<Integer> mTextSize = new MutableLiveData<>();
+
 
 
 }

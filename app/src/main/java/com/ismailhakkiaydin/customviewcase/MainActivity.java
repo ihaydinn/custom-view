@@ -33,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.button.setOnClickListener(v -> {
             Random rnd = new Random();
             int number = rnd.nextInt(4);
-            String[] dizi = {"#FF1212", "#1251FF", "#125212", "#651200"};
+            String[] bgColorArray = {"#FF1212", "#1251FF", "#125212", "#651200"};
 
-            textViewCV.setTextBgColor(dizi[number]);
+            textViewCV.setTextBgColor(bgColorArray[number]);
             textViewCV.setText("Beni Tıkladın..");
+
+            textViewCV.setTextSize(32);
         });
     }
 
